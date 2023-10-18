@@ -1,4 +1,5 @@
 
 .vscode
-builddir
+build
 *.o
+.dccache
