@@ -96,7 +96,12 @@ static void dumpstack(lua_State *L)
 
 int main(int argc, char **argv)
 {
-    const char *filename = "/home/halamix2/repos/reverse/gamewave/games/Click! (USA)/data/game.unpack";
+    if (argc != 2)
+    {
+        printf("Usage: zlua_test <filename.zbc>\n");
+        exit(1);
+    }
+    const char *filename = argv[1];
 
     lua_State *L = lua_open(); /* opens Lua */
     openstdlibs(L);
