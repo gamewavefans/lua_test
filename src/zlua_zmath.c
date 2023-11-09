@@ -1,23 +1,22 @@
 #include "zlua_rm.h"
 
-// TODO
 static int zmath_mod(lua_State *L)
 {
     int i = luaL_checkint(L, 1);
     int j = luaL_checkint(L, 2);
-    int ret = 0;
-    printf("\tcalled zmath.Mod(%d, %d) -> %d - UNIMPLEMENTED\n", i, j, ret);
+    int ret = i % j;
+    printf("\tcalled zmath.Mod(%d, %d) -> %d\n", i, j, ret);
     lua_pushnumber(L, (lua_Number)ret);
     return 1;
 }
 
-// TODO
+// TODO may be off-by-one
 static int zmath_rand(lua_State *L)
 {
-    int i = luaL_checkint(L, 1);
-    int j = luaL_checkint(L, 2);
-    int ret = 0;
-    printf("\tcalled zmath.Rand(%d, %d) -> %d - UNIMPLEMENTED\n", i, j, ret);
+    int min = luaL_checkint(L, 1);
+    int max = luaL_checkint(L, 2);
+    int ret = min + (rand() % (max + 1 - min));
+    printf("\tcalled zmath.Rand(%d, %d) -> %d\n", min, max, ret);
     lua_pushnumber(L, (lua_Number)ret);
     return 1;
 }
@@ -26,7 +25,9 @@ static int zmath_rand(lua_State *L)
 static int zmath_rand_seed(lua_State *L)
 {
     int i = luaL_checkint(L, 1);
-    printf("\tcalled zmath.RandSeed(%d) - UNIMPLEMENTED\n", i);
+    // TODO make this either random or use a predetermined seed for debugging purposes
+    srand(i);
+    printf("\tcalled zmath.RandSeed(%d)\n", i);
     return 0;
 }
 

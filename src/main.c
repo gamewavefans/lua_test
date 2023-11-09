@@ -10,21 +10,21 @@
 #include "zlua_rm.h"
 #include "zlua_time.h"
 #include "zlua_log.h"
-// #include "zlua_pointer.h"
+#include "zlua_pointer.h"
 #include "zlua_zmath.h"
-// #include "zlua_input.h"
+#include "zlua_input.h"
 #include "zlua_iframe.h"
 #include "zlua_engine.h"
 // #include "zlua_text.h"
-// #include "zlua_font.h"
-// #include "zlua_movie.h"
-// #include "zlua_audio.h"
+#include "zlua_font.h"
+#include "zlua_movie.h"
+#include "zlua_audio.h"
 // #include "zlua_spi.h"
 // #include "zlua_uart.h"
-// #include "zlua_eeprom.h"
+#include "zlua_eeprom.h"
 // #include "zlua_zfile.h"
 // #include "zlua_exp_int.h"
-// #include "zlua_bit.h"
+#include "zlua_bit.h"
 
 static const luaL_reg lualibs[] = {
     {"base", luaopen_base},
@@ -39,21 +39,21 @@ static const luaL_reg lualibs[] = {
     {"rm", luaopen_rm},
     {"time", luaopen_time},
     {"log", luaopen_log},
-    // {"pointer", luaopen_pointer},
+    {"pointer", luaopen_pointer},
     {"zmath", luaopen_zmath},
-    // {"input", luaopen_input},
+    {"input", luaopen_input},
     {"iframe", luaopen_iframe},
     {"engine", luaopen_engine},
     // {"text", luaopen_text},
-    // {"font", luaopen_font},
-    // {"movie", luaopen_movie},
-    // {"audio", luaopen_audio},
+    {"font", luaopen_font},
+    {"movie", luaopen_movie},
+    {"audio", luaopen_audio},
     // {"spi", luaopen_spi},
     // {"uart", luaopen_uart},
-    // {"eeprom", luaopen_eeprom},
+    {"eeprom", luaopen_eeprom},
     // {"zfile", luaopen_zfile},
     // {"exp_int", luaopen_exp_int},
-    // {"bit", luaopen_bit},
+    {"bit", luaopen_bit},
     {NULL, NULL}};
 
 static void openstdlibs(lua_State *l)
@@ -76,7 +76,7 @@ static void dumpstack(lua_State *L)
         switch (lua_type(L, i))
         {
         case LUA_TNUMBER:
-            printf("%g\n", lua_tonumber(L, i));
+            printf("%d\n", lua_tonumber(L, i));
             break;
         case LUA_TSTRING:
             printf("%s\n", lua_tostring(L, i));

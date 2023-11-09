@@ -6,17 +6,17 @@ const char *getLogLevelName(int level)
     switch (level)
     {
     case 0:
-        return "LOG_DEBUG";
-    case 1:
-        return "LOG_VERBOSE";
-    case 2:
-        return "LOG_NORMAL";
-    case 3:
-        return "LOG_IMPORTANT";
-    case 4:
-        return "LOG_CRITICAL";
-    case 5:
         return "LOG_NONE";
+    case 1:
+        return "LOG_CRITICAL";
+    case 2:
+        return "LOG_IMPORTANT";
+    case 3:
+        return "LOG_NORMAL";
+    case 4:
+        return "LOG_VERBOSE";
+    case 5:
+        return "LOG_DEBUG";
 
     default:
         static char buff[64];
@@ -24,12 +24,13 @@ const char *getLogLevelName(int level)
         return buff;
     }
 }
-// TODO
+
 static int log_log(lua_State *L)
 {
     int level = luaL_checkint(L, 1);
     const char *line = luaL_checkstring(L, 2);
-    // this seems wrong
+    // printf("\tcalled log.Log(%s, \"%s\") - UNIMPLEMENTED\n", getLogLevelName(level), line);
+
     if (level <= current_level)
     {
         printf("%s:\t%s", getLogLevelName(level), line);
@@ -41,12 +42,11 @@ static int log_log(lua_State *L)
     return 0;
 }
 
-// TODO
 static int log_set_level(lua_State *L)
 {
     int level = luaL_checkint(L, 1);
     current_level = level;
-    printf("\tcalled log.SetLevel(%s) - UNIMPLEMENTED\n", getLogLevelName(level));
+    printf("called log.SetLevel(%s) - UNIMPLEMENTED\n", getLogLevelName(level));
     return 0;
 }
 
@@ -55,7 +55,7 @@ static int log_set_module(lua_State *L)
 {
     int i = luaL_checkint(L, 1);
     int j = luaL_checkint(L, 2);
-    printf("\tcalled log.SetModule(%d, %d) - UNIMPLEMENTED\n", i, j);
+    printf("called log.SetModule(%d, %d) - UNIMPLEMENTED\n", i, j);
     return 0;
 }
 
@@ -63,7 +63,7 @@ static int log_set_module(lua_State *L)
 static int log_print_raw(lua_State *L)
 {
     const char *line = luaL_checkstring(L, 1);
-    printf("\tcalled log.PrintRaw(\"%s\") - UNIMPLEMENTED\n", line);
+    printf("called log.PrintRaw(\"%s\") - UNIMPLEMENTED\n", line);
     return 0;
 }
 
@@ -71,7 +71,7 @@ static int log_print_raw(lua_State *L)
 static int log_print_line(lua_State *L)
 {
     const char *line = luaL_checkstring(L, 1);
-    printf("\tcalled log.PrintLine(\"%s\") - UNIMPLEMENTED\n", line);
+    printf("called log.PrintLine(\"%s\") - UNIMPLEMENTED\n", line);
     return 0;
 }
 
@@ -79,7 +79,7 @@ static int log_print_line(lua_State *L)
 static int log_debug_set_state(lua_State *L)
 {
     int enabled = luaL_checkint(L, 1);
-    printf("\tcalled log.DebugSetState(%d) - UNIMPLEMENTED\n", enabled);
+    printf("called log.DebugSetState(%d) - UNIMPLEMENTED\n", enabled);
     return 0;
 }
 

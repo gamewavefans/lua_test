@@ -1,13 +1,5 @@
 #include "zlua_time.h"
 
-// // TODO
-// static int time_get_real_time(lua_State *L)
-// {
-//     int ret = 0;
-//     printf("\tcalled time.GetRealTime() -> %d - UNIMPLEMENTED\n", ret);
-//     lua_pushnumber(L, (lua_Number)ret);
-//     return 1;
-// }
 // {"ZMM_SetLeakDebugMode", engine_},
 // {"ZMM_SetCheckPoint", engine_},
 // {"ZMM_VerifyCheckPoint", engine_},
@@ -16,7 +8,7 @@
 // TODO
 static int engine_zmm_get_total_free_memory(lua_State *L)
 {
-    int free = 524000000;
+    int free = 1234;
     printf("\tcalled engine.ZMM_GetTotalFreeMemory() -> %d - UNIMPLEMENTED\n", free);
     lua_pushnumber(L, (lua_Number)free);
     return 1;
@@ -41,7 +33,7 @@ static int engine_zmm_get_total_free_memory(lua_State *L)
 static int engine_version(lua_State *L)
 {
     // in format if 1.01.3.xxxxxx
-    const char *version = "1.01.3.123456";
+    const char *version = "dummyEngineVer"; //"1.01.3.123456";
     printf("\tcalled engine.Version() -> %s - UNIMPLEMENTED\n", version);
     lua_pushstring(L, version);
     return 1;

@@ -48,14 +48,20 @@ add_executable(zlua_test
     src/zlua_bit.h
 )
 
+
 add_custom_target(
    zlua
-   COMMAND make
+   COMMAND make -j 32
    WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/lua_gamewave
 )
 add_dependencies(zlua_test zlua)
 
 target_link_libraries(zlua_test  ${CMAKE_CURRENT_SOURCE_DIR}/lua_gamewave/lib/liblua.a  ${CMAKE_CURRENT_SOURCE_DIR}/lua_gamewave/lib/liblualib.a)
-set_target_properties(zlua_test PROPERTIES COMPILE_OPTIONS "-m32" LINK_FLAGS "-m32")
+# set_target_properties(zlua_test PROPERTIES COMPILE_OPTIONS "-m32" LINK_FLAGS "-m32")
 # set the same type for numbers as expected
-target_compile_definitions(zlua_test PRIVATE LUA_NUMBER=float)
+target_compile_definitions(zlua_test PRIVATE LUA_NUMBER=int)
+
+add_custom_target(really-clean
+  COMMAND cmake --build "${CMAKE_CURRENT_BINARY_DIR}" --target clean
+  COMMAND cd ${CMAKE_CURRENT_SOURCE_DIR}/lua_gamewave && make clean
+)

@@ -13,10 +13,9 @@ static int time_get_real_time(lua_State *L)
 static int time_sleep(lua_State *L)
 {
     int i = luaL_checkint(L, 1);
-    int ret = 0;
-    printf("\tcalled time.Sleep(%d) -> %d - UNIMPLEMENTED\n", i, ret);
-    lua_pushnumber(L, (lua_Number)ret);
-    return 1;
+    printf("\tcalled time.Sleep(%d) - UNIMPLEMENTED\n", i);
+    usleep(i * 1000);
+    return 0;
 }
 
 static const luaL_reg timelib[] = {
