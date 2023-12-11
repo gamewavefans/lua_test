@@ -1,51 +1,25 @@
 cmake_minimum_required(VERSION 3.27)
 
+
+file(GLOB SRCS "src/*.c")
+file(GLOB INCLUDES "src/*.h")
+
 project(zluaTest C)
+
+message("${CMAKE_C_COMPILER_ID}")
+
+if("${CMAKE_C_COMPILER_ID}" STREQUAL "GNU")
+  message("gcc detected")
+  add_compile_options("-Werror=implicit-function-declaration")
+endif()
+
 add_executable(zlua_test 
     lua_gamewave/include/lauxlib.h
     lua_gamewave/include/lua.h
     lua_gamewave/include/lualib.h
 
-    src/main.c
-
-    src/zlua_gl.c
-    src/zlua_gl.h
-    src/zlua_rm.c
-    src/zlua_rm.h
-    src/zlua_time.c
-    src/zlua_time.h
-    src/zlua_log.c
-    src/zlua_log.h
-    src/zlua_pointer.c
-    src/zlua_pointer.h
-    src/zlua_zmath.c
-    src/zlua_zmath.h
-    src/zlua_input.c
-    src/zlua_input.h
-    src/zlua_iframe.c
-    src/zlua_iframe.h
-    src/zlua_engine.c
-    src/zlua_engine.h
-    src/zlua_text.c
-    src/zlua_text.h
-    src/zlua_font.c
-    src/zlua_font.h
-    src/zlua_movie.c
-    src/zlua_movie.h
-    src/zlua_audio.c
-    src/zlua_audio.h
-    src/zlua_spi.c
-    src/zlua_spi.h
-    src/zlua_uart.c
-    src/zlua_uart.h
-    src/zlua_eeprom.c
-    src/zlua_eeprom.h
-    src/zlua_zfile.c
-    src/zlua_zfile.h
-    src/zlua_exp_int.c
-    src/zlua_exp_int.h
-    src/zlua_bit.c
-    src/zlua_bit.h
+    ${SRCS}
+    ${INCLUDES}
 )
 
 
