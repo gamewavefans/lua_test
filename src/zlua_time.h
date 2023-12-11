@@ -1,6 +1,7 @@
 #pragma once
 
 #include <time.h>
+#include <unistd.h>
 
 #include "../lua_gamewave/include/lauxlib.h"
 #include "../lua_gamewave/include/lua.h"

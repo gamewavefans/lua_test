@@ -3,6 +3,7 @@
 int current_level = 0;
 const char *getLogLevelName(int level)
 {
+    static char buff[64];
     switch (level)
     {
     case 0:
@@ -19,7 +20,6 @@ const char *getLogLevelName(int level)
         return "LOG_DEBUG";
 
     default:
-        static char buff[64];
         sprintf(buff, "LOG_UNKNOWN %d", level);
         return buff;
     }

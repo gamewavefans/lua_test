@@ -1,4 +1,4 @@
-#include "zlua_rm.h"
+#include "zlua_zmath.h"
 
 static int zmath_mod(lua_State *L)
 {
