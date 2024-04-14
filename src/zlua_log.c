@@ -37,7 +37,7 @@ static int log_log(lua_State *L)
     }
     else
     {
-        printf("LOG_HIDDEN %s: %s", getLogLevelName(level), line);
+        printf("HIDDEN %s: %s", getLogLevelName(level), line);
     }
     return 0;
 }
@@ -46,7 +46,7 @@ static int log_set_level(lua_State *L)
 {
     int level = luaL_checkint(L, 1);
     current_level = level;
-    printf("called log.SetLevel(%s) - UNIMPLEMENTED\n", getLogLevelName(level));
+    printf("called log.SetLevel(%s)\n", getLogLevelName(level));
     return 0;
 }
 

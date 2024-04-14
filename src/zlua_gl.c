@@ -29,6 +29,7 @@ static int gl_create_overlay_from_texture(lua_State *L)
     int i = luaL_checkint(L, 1);
     int ret = overlay_number++;
     printf("\tcalled gl.CreateOverlayFromTexture(%d) -> %d - UNIMPLEMENTED\n", i, ret);
+    fflush(stdout);
     lua_pushnumber(L, (lua_Number)ret);
     return 1;
 }

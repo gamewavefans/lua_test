@@ -16,6 +16,7 @@ static int text_render_simple(lua_State *L)
 static int text_render(lua_State *L)
 {
     int top = lua_gettop(L);
+    printf("Top: %d\n", top);
     const char *s = luaL_checkstring(L, 1);
     int font_id = luaL_checkint(L, 2);
     int k = luaL_checkint(L, 3);
@@ -23,7 +24,7 @@ static int text_render(lua_State *L)
     char buff[255] = "";
     for (int loop = 5; loop <= top; loop++)
     {
-        int val = luaL_checkint(L, font_id);
+        int val = luaL_checkint(L, loop);
         char tmp[64] = "";
         sprintf(tmp, ", %d", val);
         strcat(buff, tmp);

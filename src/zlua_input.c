@@ -11,7 +11,6 @@ static int input_get_key(lua_State *L)
     int key_id = 0;    //(int)time(NULL);
     int remote_id = 1; // ?
     int timestamp_id = (int)time(NULL);
-    getchar();
 
     printf("called input.GetKey() -> %d, %d, %d - UNIMPLEMENTED\n", key_id, remote_id, timestamp_id);
     lua_pushnumber(L, (lua_Number)key_id);

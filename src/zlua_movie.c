@@ -1,6 +1,6 @@
 #include "zlua_movie.h"
 
-int states[2] = {1, 1, 0};
+int states[2] = {0, 1};
 int counter = 0;
 // TODO
 static int movie_load(lua_State *L)
