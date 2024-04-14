@@ -1,6 +1,6 @@
 #include "zlua_zmath.h"
 
-static int zmath_mod(lua_State *L)
+int zmath_mod(lua_State *L)
 {
     int i = luaL_checkint(L, 1);
     int j = luaL_checkint(L, 2);
@@ -10,7 +10,6 @@ static int zmath_mod(lua_State *L)
     return 1;
 }
 
-// TODO may be off-by-one
 static int zmath_rand(lua_State *L)
 {
     int min = luaL_checkint(L, 1);

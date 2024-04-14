@@ -1,4 +1,5 @@
 #include "zlua_bit.h"
+#include "zlua_zmath.h"
 
 //   - `int bor(int i, ...)` - or
 //   - `int bxor(int i, ...)` - xor
@@ -107,17 +108,6 @@ static int bit_arshift(lua_State *L)
     return 1;
 }
 
-// the same as zmath_mod
-static int zmath_mod(lua_State *L)
-{
-    int i = luaL_checkint(L, 1);
-    int j = luaL_checkint(L, 2);
-    int ret = i % j;
-    printf("\tcalled bit.mod(%d, %d) -> %d\n", i, j, ret);
-    lua_pushnumber(L, (lua_Number)ret);
-    return 1;
-}
-
 static const luaL_reg bitlib[] = {
     {"bnot", bit_bnot},
     {"band", bit_band},
@@ -126,6 +116,7 @@ static const luaL_reg bitlib[] = {
     {"lshift", bit_lshift},
     {"rshift", bit_rshift},
     {"arshift", bit_arshift},
+    // the same as zmath.mod
     {"mod", zmath_mod},
     {NULL, NULL}};
 

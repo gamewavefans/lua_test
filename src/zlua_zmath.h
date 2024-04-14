@@ -7,3 +7,4 @@
 #include "../lua_gamewave/include/lualib.h"
 
 extern int luaopen_zmath(lua_State *L);
+extern int zmath_mod(lua_State *L);

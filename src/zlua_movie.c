@@ -1,5 +1,7 @@
 #include "zlua_movie.h"
 
+int states[2] = {1, 1, 0};
+int counter = 0;
 // TODO
 static int movie_load(lua_State *L)
 {
@@ -28,6 +30,8 @@ static int movie_play(lua_State *L)
 // TODO
 static int movie_stop(lua_State *L)
 {
+    // 0 - pause
+    // 1 - unpause
     int i = luaL_checkint(L, 1);
     printf("\tcalled movie.Stop(%d) - UNIMPLEMENTED\n", i);
     return 0;
@@ -43,9 +47,15 @@ static int movie_resume(lua_State *L)
 // TODO
 static int movie_get_state(lua_State *L)
 {
-    // 0 - not finished?
-    // 1 - finished playing?
-    int ret = 1;
+    // 0 - not playing (finished/loading)
+    // 1 - playing
+    // Rand(1, 288) - huh?
+    // Click - zapit_logo, nytric_logo, CLICK_TITLE_1-6 (rand), MAIN_MENU_LOOP
+    // for the first 3 videos expects 1 -> 0 status change
+    // for the loop only checks if it started playing
+
+    int ret = states[counter];
+    counter = (counter + 1) % (sizeof(states) / sizeof(int));
     printf("\tcalled movie.GetState() -> %d - UNIMPLEMENTED\n", ret);
     lua_pushnumber(L, (lua_Number)ret);
     return 1;

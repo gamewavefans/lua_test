@@ -16,7 +16,7 @@
 #include "zlua_input.h"
 #include "zlua_iframe.h"
 #include "zlua_engine.h"
-// #include "zlua_text.h"
+#include "zlua_text.h"
 #include "zlua_font.h"
 #include "zlua_movie.h"
 #include "zlua_audio.h"
@@ -45,7 +45,7 @@ static const luaL_reg lualibs[] = {
     {"input", luaopen_input},
     {"iframe", luaopen_iframe},
     {"engine", luaopen_engine},
-    // {"text", luaopen_text},
+    {"text", luaopen_text},
     {"font", luaopen_font},
     {"movie", luaopen_movie},
     {"audio", luaopen_audio},
