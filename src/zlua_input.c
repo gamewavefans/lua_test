@@ -8,7 +8,7 @@
 static int input_get_key(lua_State *L)
 {
     // timestamp, remote, keyid?
-    int key_id = 0;    //(int)time(NULL);
+    int key_id = 255;  //(int)time(NULL);
     int remote_id = 1; // ?
     int timestamp_id = (int)time(NULL);
 

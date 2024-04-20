@@ -1,5 +1,8 @@
 #include <stdlib.h>
 #include <stdio.h>
+#include <stdbool.h>
+#include <signal.h>
+#include <pthread.h>
 
 #include <sys/stat.h>
 
@@ -95,8 +98,34 @@ static void dumpstack(lua_State *L)
     }
 }
 
+_Atomic int sInterrupted = 0;
+_Atomic bool shouldStop = false;
+static void sSignalHandler(int signum)
+{
+    printf("\rInterrupt signal received. Please wait for graceful exit or press ctrl-c again to force kill\n");
+    sInterrupted = 1;
+    if (shouldStop)
+    {
+        exit(-1);
+    }
+    shouldStop = true;
+}
+
+void hook(lua_State *L, lua_Debug *ar)
+{
+    if (shouldStop)
+    {
+        lua_sethook(L, hook, LUA_MASKLINE, 0);
+        luaL_error(L, "terminate");
+    }
+}
+
 int main(int argc, char **argv)
 {
+    shouldStop = false;
+    signal(SIGINT, sSignalHandler);
+    signal(SIGTERM, sSignalHandler);
+
     if (argc != 2)
     {
         printf("Usage: zlua_test <filename.zbc>\n");
@@ -106,6 +135,7 @@ int main(int argc, char **argv)
 
     lua_State *L = lua_open(); /* opens Lua */
     openstdlibs(L);
+    lua_sethook(L, hook, LUA_MASKCOUNT, 100);
     printf("Lua machine created\n");
 
     // lua_dofile(L, filename);
