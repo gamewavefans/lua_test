@@ -21,6 +21,8 @@ add_executable(zlua_test
     ${SRCS}
     ${INCLUDES}
 )
+set_property(TARGET zlua_test PROPERTY C_STANDARD 23)
+
 
 
 add_custom_target(
