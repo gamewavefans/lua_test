@@ -5,11 +5,26 @@
 // {"ZMM_VerifyCheckPoint", engine_},
 // {"ZMM_GetTotalAllocMemory", engine_},
 
+static int engine_zmm_get_total_alloc_memory(lua_State *L)
+{
+    int free = 1234;
+    printf("\tcalled engine.ZMM_GetTotalAllocMemory() -> %d - UNIMPLEMENTED\n", free);
+    lua_pushnumber(L, (lua_Number)free);
+    return 1;
+}
 // TODO
 static int engine_zmm_get_total_free_memory(lua_State *L)
 {
     int free = 1234;
     printf("\tcalled engine.ZMM_GetTotalFreeMemory() -> %d - UNIMPLEMENTED\n", free);
+    lua_pushnumber(L, (lua_Number)free);
+    return 1;
+}
+
+static int engine_zmm_get_max_free_memory(lua_State *L)
+{
+    int free = 1234;
+    printf("\tcalled engine.ZMM_GetMaxFreeMemory() -> %d - UNIMPLEMENTED\n", free);
     lua_pushnumber(L, (lua_Number)free);
     return 1;
 }
@@ -45,9 +60,9 @@ static const luaL_reg enginelib[] = {
     // {"ZMM_SetLeakDebugMode", engine_},
     // {"ZMM_SetCheckPoint", engine_},
     // {"ZMM_VerifyCheckPoint", engine_},
-    // {"ZMM_GetTotalAllocMemory", engine_},
+    {"ZMM_GetTotalAllocMemory", engine_zmm_get_total_alloc_memory},
     {"ZMM_GetTotalFreeMemory", engine_zmm_get_total_free_memory},
-    // {"ZMM_GetMaxFreeMemory", engine_},
+    {"ZMM_GetMaxFreeMemory", engine_zmm_get_max_free_memory},
     // {"DR_SetEnable", engine_},
     // {"DR_SetDebug", engine_},
     // {"DR_SetAbsoluteCapping", engine_},

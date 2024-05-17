@@ -1,5 +1,11 @@
 #include "zlua_input.h"
 
+static int input_clear_key_queue(lua_State *L)
+{
+    printf("called input.ClearKeyQueue()\n");
+    return 0;
+}
+
 // TODO - map this to keyboard
 // f1- f4 abcd
 // nimbers
@@ -54,7 +60,7 @@ static int input_get_key(lua_State *L)
 }
 
 static const luaL_reg inputlib[] = {
-    // {"ClearKeyQueue", input_clear_key_queue},
+    {"ClearKeyQueue", input_clear_key_queue},
     {"GetKey", input_get_key},
     // {"WaitForKey", input_wait_for_key},
     // {"EnableRemotes", input_enable_remotes},

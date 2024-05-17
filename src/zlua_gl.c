@@ -115,6 +115,17 @@ static int gl_set_visibility(lua_State *L)
 // {"GetVisibility", gl_},
 // {"GetPosition", gl_},
 // {"GetSize", gl_},
+
+static int gl_getsize(lua_State *L)
+{
+    int i = luaL_checkint(L, 1);
+    int x = 32;
+    int y = 32;
+    printf("\tcalled gl.GetSize(%d) -> %d, %d - UNIMPLEMENTED\n", i, x, y);
+    lua_pushnumber(L, (lua_Number)x);
+    lua_pushnumber(L, (lua_Number)y);
+    return 2;
+}
 // {"ClearOSD", gl_},
 // {"Show", gl_},
 // {"number HasAnimations", gl_},
@@ -212,7 +223,7 @@ static const luaL_reg gllib[] = {
     // {"GetZorder", gl_},
     // {"GetVisibility", gl_},
     // {"GetPosition", gl_},
-    // {"GetSize", gl_},
+    {"GetSize", gl_getsize},
     // {"ClearOSD", gl_},
     // {"Show", gl_},
     // {"number HasAnimations", gl_},
